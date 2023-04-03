@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+    <Name>Firefox ESR</Name>
+    <LocalizedApplicationName>Mozilla Firefox ESR</LocalizedApplicationName>
+    <Publisher>Mozilla</Publisher>
+    <SoftwareVersion>102.9.0</SoftwareVersion>
+    <Description>Mozilla Firefox ESR is a free web browser. The Extended Support Release is a
+        community-led project that allows organizations to benefit from the speed, flexibility and
+        security of Firefox while getting the support they need.</Description>
+    <LocalizedDescription>Mozilla Firefox ESR is a free web browser. The Extended Support Release is
+        a community-led project that allows organizations to benefit from the speed, flexibility and
+        security of Firefox while getting the support they need.</LocalizedDescription>
+    <IconLocationFile>firefox.png</IconLocationFile>
+    <UserDocumentation>https://support.mozilla.org/en-US/products/firefox/get-started</UserDocumentation>
+    <Keyword>Browser</Keyword>
+    <DeploymentTypes>
+        <Name>Silent Install</Name>
+        <InstallCommand>"Firefox_Setup_102.9.0esr.exe" /S /MaintenanceService=true
+            /DesktopShortcut=false /PreventRebootRequired=true</InstallCommand>
+        <EstimatedRuntimeMins>5</EstimatedRuntimeMins>
+        <MaximumRuntimeMins>30</MaximumRuntimeMins>
+        <UninstallCommand>"C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe" /S</UninstallCommand>
+        <Detection>
+            <Type>File</Type>
+            <FileName>firefox.exe</FileName>
+            <Path>C:\Program Files\Mozilla Firefox</Path>
+            <PropertyType>Version</PropertyType>
+            <ExpressionOperator>GreaterEquals</ExpressionOperator>
+            <ExpectedValue>102.9.0</ExpectedValue>
+        </Detection>
+        <InstallBehavior>
+            <DisplayName>Firefox</DisplayName>
+            <Executable>firefox.exe</Executable>
+        </InstallBehavior>
+    </DeploymentTypes>
+    <Deploy>
+        <CollectionName>Mozilla Firefox ESR - Required</CollectionName>
+    </Deploy>
+    <Deploy>
+        <CollectionName>Mozilla Firefox ESR - Available</CollectionName>
+        <DeployPurpose>Available</DeployPurpose>
+    </Deploy>
+    <Deploy>
+        <CollectionName>Mozilla Firefox ESR - Immediate</CollectionName>
+        <DeployPurpose>Required</DeployPurpose>
+        <ImmediateDeployment>true</ImmediateDeployment>
+        <AllowRepairApp>true</AllowRepairApp>
+    </Deploy>
+    <SoftwareMetering>
+        <ProductName>Mozilla Firefox ESR</ProductName>
+        <FileName>firefox.exe</FileName>
+    </SoftwareMetering>
+    <SoftwareMetering>
+        <ProductName>Mozilla Firefox ESR - 102.9.0</ProductName>
+        <FileName>firefox.exe</FileName>
+        <FileVersion>102.9.0</FileVersion>
+    </SoftwareMetering>
+</package>

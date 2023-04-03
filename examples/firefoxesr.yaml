@@ -1,0 +1,51 @@
+---
+Name: Firefox ESR
+LocalizedApplicationName: Mozilla Firefox ESR
+Publisher: Mozilla
+SoftwareVersion: 102.9.0
+Description:
+  Mozilla Firefox ESR is a free web browser. The Extended Support Release
+  is a community-led project that allows organizations to benefit from the speed,
+  flexibility and security of Firefox while getting the support they need.
+LocalizedDescription:
+  Mozilla Firefox ESR is a free web browser. The Extended Support
+  Release is a community-led project that allows organizations to benefit from the
+  speed, flexibility and security of Firefox while getting the support they need.
+IconLocationFile: firefox.png
+UserDocumentation: https://support.mozilla.org/en-US/products/firefox/get-started
+Keyword:
+  - Browser
+DeploymentTypes:
+  - Name: Silent Install
+    InstallCommand:
+      '"Firefox_Setup_102.9.0esr.exe" /S /MaintenanceService=true /DesktopShortcut=false
+      /PreventRebootRequired=true'
+    EstimatedRuntimeMins: 5
+    MaximumRuntimeMins: 30
+    UninstallCommand:
+      '"C:\Program Files (x86)\Mozilla Firefox\uninstall\helper.exe"
+      /S'
+    Detection:
+      - Type: File
+        FileName: firefox.exe
+        Path: C:\Program Files\Mozilla Firefox
+        PropertyType: Version
+        ExpressionOperator: GreaterEquals
+        ExpectedValue: "102.9.0"
+    InstallBehavior:
+      - DisplayName: Firefox
+        Executable: firefox.exe
+Deploy:
+  - CollectionName: Mozilla Firefox ESR - Required
+  - CollectionName: Mozilla Firefox ESR - Available
+    DeployPurpose: Available
+  - CollectionName: Mozilla Firefox ESR - Immediate
+    DeployPurpose: Required
+    ImmediateDeployment: true
+    AllowRepairApp: true
+SoftwareMetering:
+  - ProductName: Mozilla Firefox ESR
+    FileName: firefox.exe
+  - ProductName: "Mozilla Firefox ESR - 102.9.0"
+    FileName: firefox.exe
+    FileVersion: "102.9.0"
