@@ -24,4 +24,14 @@ task Build {
     Build-Module
 }
 
+task Publish {
+    
+    $PublishModule = @{
+        Path = "$BuildRoot\Output\CMBuilder"
+        NuGetApiKey = $env:NUGET_API_KEY
+    }
+    Publish-Module @PublishModule
+}
+
+
 task . Build
