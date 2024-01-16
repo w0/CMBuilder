@@ -32,11 +32,6 @@ function DeploymentType {
                 } else {
                     'InstallForSystem'
                 }
-                LogonRequirementType     = if ($DeploymentType.LogonRequirementType) {
-                    $DeploymentType.LogonRequirementType
-                } else {
-                    'WhetherOrNotUserLoggedOn'
-                }
                 UserInteractionMode      = if ($DeploymentType.UserInteractionMode) {
                     $DeploymentType.UserInteractionMode
                 } else {
@@ -98,8 +93,11 @@ function DeploymentType {
                 $AddCMScriptDeploymentType.Add('InstallWorkingDirectory', $DeploymentType.InstallWorkingDirectory)
             }
 
-            if ($DeploymentType.LogonRequirementType) {
+            # If you set InstallationBehaviorType to InstallForUser, then you can't set this parameter.
+            if ($DeploymentType.LogonRequirementType -and $DeploymentType.InstallationBehaviorType -ne 'InstallForUser') {
                 $AddCMScriptDeploymentType.Add('LogonRequirementType', $DeploymentType.LogonRequirementType)
+            } elseif ($DeploymentType.InstallationBehaviorType -ne 'InstallForUser') {
+                $AddCMScriptDeploymentType.Add('LogonRequirementType', 'WhetherOrNotUserLoggedOn')
             }
 
             if ($DeploymentType.MaximumRuntimeMins) {
